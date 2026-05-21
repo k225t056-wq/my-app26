@@ -14,6 +14,7 @@ const state = {
     vcMethod: "Discord",
     twitter: "@Gamer_Alpha",
     discord: "Gamer_Alpha#1234",
+    friendCode: "SW-1234-5678-9012",
     bio: "よろしくお願いします！FPSやRPGを夜な夜なプレイしています。楽しくワイワイ遊びましょう！お気軽にフォローしてください！",
     themeColor: "#9333ea",
     avatarUrl: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&h=400&fit=crop",
@@ -38,6 +39,7 @@ const elements = {
         vcMethod: document.getElementById('input-vc-method'),
         twitter: document.getElementById('input-twitter'),
         discord: document.getElementById('input-discord'),
+        friendCode: document.getElementById('input-friend-code'),
         bio: document.getElementById('input-bio')
     },
     uploadAvatar: document.getElementById('upload-avatar'),
@@ -275,10 +277,22 @@ function render() {
         ctx.fillText(item.value, x, y + 50);
     });
 
+    // Friend Code Section
+    if (state.friendCode) {
+        const fcY = 580;
+        ctx.font = '700 22px "Orbitron"';
+        ctx.fillStyle = state.themeColor;
+        ctx.fillText("FRIEND CODE / PLATFORM ID", contentX, fcY);
+        
+        ctx.font = '700 32px "Noto Sans JP"';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(state.friendCode, contentX, fcY + 45);
+    }
+
     // Bio Section
-    const bioY = 650;
+    const bioY = 680; // Shift down to accommodate friend code
     const bioW = 1100;
-    const bioH = 220;
+    const bioH = 190; // Slightly shorter to fit everything
 
     // Bio Box
     ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
