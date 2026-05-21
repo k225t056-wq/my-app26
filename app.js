@@ -55,12 +55,26 @@ const elements = {
  * Initialize the application
  */
 function init() {
+    // Set initial values from state to inputs
+    Object.keys(elements.inputs).forEach(key => {
+        if (elements.inputs[key]) {
+            elements.inputs[key].value = state[key];
+        }
+    });
+
     // Bind input events
     Object.keys(elements.inputs).forEach(key => {
-        elements.inputs[key].addEventListener('input', (e) => {
-            state[key] = e.target.value;
-            render();
-        });
+        if (elements.inputs[key]) {
+            elements.inputs[key].addEventListener('input', (e) => {
+                state[key] = e.target.value;
+                render();
+            });
+            // Handle select changes specifically
+            elements.inputs[key].addEventListener('change', (e) => {
+                state[key] = e.target.value;
+                render();
+            });
+        }
     });
 
     // Color buttons
@@ -85,7 +99,11 @@ function init() {
     Promise.all([
         loadImages(),
         document.fonts.ready
-    ]).then(() => render());
+    ]).then(() => {
+        render();
+        // Extra render after a short delay to ensure fonts/images are fully applied
+        setTimeout(render, 500);
+    });
 }
 
 /**
