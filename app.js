@@ -12,6 +12,8 @@ const state = {
     style: "エンジョイ勢",
     vc: "可",
     vcMethod: "Discord",
+    twitter: "@Gamer_Alpha",
+    discord: "Gamer_Alpha#1234",
     bio: "よろしくお願いします！FPSやRPGを夜な夜なプレイしています。楽しくワイワイ遊びましょう！お気軽にフォローしてください！",
     themeColor: "#9333ea",
     avatarUrl: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&h=400&fit=crop",
@@ -34,6 +36,8 @@ const elements = {
         style: document.getElementById('input-style'),
         vc: document.getElementById('input-vc'),
         vcMethod: document.getElementById('input-vc-method'),
+        twitter: document.getElementById('input-twitter'),
+        discord: document.getElementById('input-discord'),
         bio: document.getElementById('input-bio')
     },
     uploadAvatar: document.getElementById('upload-avatar'),
@@ -195,16 +199,28 @@ function render() {
 
     // 5. Text Content
     const contentX = 580;
-    const startY = 220;
+    const startY = 180; // Shift up slightly to fit social IDs
 
     // Player Name
     ctx.fillStyle = '#ffffff';
     ctx.font = '900 80px "Noto Sans JP"';
     ctx.fillText(state.name, contentX, startY);
 
-    // Accent line under name
+    // Social IDs (Twitter & Discord)
+    ctx.font = '700 24px "Noto Sans JP"';
+    ctx.fillStyle = '#cbd5e1';
+    let socialX = contentX;
+    if (state.twitter) {
+        ctx.fillText(`Twitter: ${state.twitter}`, socialX, startY + 60);
+        socialX += ctx.measureText(`Twitter: ${state.twitter}`).width + 40;
+    }
+    if (state.discord) {
+        ctx.fillText(`Discord: ${state.discord}`, socialX, startY + 60);
+    }
+
+    // Accent line under name/social
     ctx.fillStyle = state.themeColor;
-    ctx.fillRect(contentX, startY + 20, 400, 8);
+    ctx.fillRect(contentX, startY + 80, 400, 8);
 
     // Info Grid
     const items = [
@@ -223,7 +239,7 @@ function render() {
         const col = i % 2;
         const row = Math.floor(i / 2);
         const x = contentX + col * 550;
-        const y = startY + 120 + row * 110;
+        const y = startY + 160 + row * 110; // Adjust spacing for higher startY
 
         // Label
         ctx.font = '700 22px "Orbitron"';
