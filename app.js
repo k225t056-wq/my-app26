@@ -279,20 +279,20 @@ function render() {
 
     // Friend Code Section
     if (state.friendCode) {
-        const fcY = 710; // Significantly lower to ensure no overlap
-        ctx.font = '700 22px "Orbitron"';
+        const fcY = 760; // Clearly below the grid (which ends around 670-700)
+        ctx.font = '700 24px "Orbitron"';
         ctx.fillStyle = state.themeColor;
         ctx.fillText("FRIEND CODE / PLATFORM ID", contentX, fcY);
         
-        ctx.font = '700 32px "Noto Sans JP"';
+        ctx.font = '700 36px "Noto Sans JP"';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(state.friendCode, contentX, fcY + 45);
+        ctx.fillText(state.friendCode, contentX, fcY + 50);
     }
 
     // Bio Section
-    const bioY = 820; // Lowered to follow the friend code section
+    const bioY = 860; // Clearly below the friend code
     const bioW = 1100;
-    const bioH = 160; // Adjusted height to stay within the 1080px canvas limit
+    const bioH = 150; // Shorter to ensure it fits in 1080px total height
 
     // Bio Box
     ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
