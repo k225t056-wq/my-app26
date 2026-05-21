@@ -1,911 +1,159 @@
 <!DOCTYPE html>
-<html lang="ja" class="dark">
+<html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ゲーム自己紹介カードジェネレーター</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght=500;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Noto Sans JP', 'sans-serif'],
-            gaming: ['Orbitron', 'Noto Sans JP', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    /* ゲーミング風のカスタマイズCSS */
-    .gaming-glow {
-      box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
-    }
-    .gaming-gradient {
-      background: linear-gradient(135deg, #1e1b4b 0%, #311042 50%, #0f172a 100%);
-    }
-    /* カスタムスクロールバー */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0f172a;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #475569;
-      border-radius: 3px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #64748b;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Profile Card Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased">
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fa-solid fa-gamepad"></i>
+                <h1>GAME CARD GEN</h1>
+            </div>
+            <div class="header-status">
+                <span class="badge">GitHub Pages Ready</span>
+            </div>
+        </div>
+    </header>
 
-  <!-- ヘッダー -->
-  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 px-4 py-3">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
-      <div class="flex items-center gap-3">
-        <div class="bg-gradient-to-tr from-purple-600 to-pink-500 p-2 rounded-xl text-white">
-          <i class="fa-solid fa-gamepad text-2xl animate-pulse"></i>
-        </div>
-        <div>
-          <h1 class="text-xl font-black tracking-wider font-gaming bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
-            GAME PROFILE CARD GENERATOR
-          </h1>
-          <p class="text-xs text-slate-400">プロ級のゲーム自己紹介カードを瞬時に作成・生成</p>
-        </div>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20">
-          <span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-purple-400 animate-ping"></span>
-          GitHub Pages Ready
-        </span>
-      </div>
+    <main class="container">
+        <section class="editor-panel">
+            <div class="card-section">
+                <h2><i class="fa-solid fa-user-gear"></i> 基本情報</h2>
+                <div class="input-group">
+                    <label for="input-name">プレイヤー名</label>
+                    <input type="text" id="input-name" placeholder="Gamer Name" value="Gamer_Alpha">
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="input-game">メインゲーム</label>
+                        <input type="text" id="input-game" placeholder="Game Title" value="Apex Legends">
+                    </div>
+                    <div class="input-group">
+                        <label for="input-history">プレイ歴</label>
+                        <input type="text" id="input-history" placeholder="例: 3年" value="約3年">
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="input-platform">プラットフォーム</label>
+                        <select id="input-platform">
+                            <option value="PC">PC</option>
+                            <option value="PlayStation">PlayStation</option>
+                            <option value="Nintendo Switch">Nintendo Switch</option>
+                            <option value="Xbox">Xbox</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="マルチ" selected>マルチ</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="input-time">活動時間帯</label>
+                        <input type="text" id="input-time" placeholder="例: 21:00〜" value="21:00 〜 24:00">
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="input-style">プレイスタイル</label>
+                        <select id="input-style">
+                            <option value="エンジョイ勢" selected>エンジョイ勢</option>
+                            <option value="ガチ勢">ガチ勢</option>
+                            <option value="のんびり">のんびり</option>
+                            <option value="ワイワイ">ワイワイ</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="input-vc">VC</label>
+                        <select id="input-vc">
+                            <option value="Discord可" selected>Discord可</option>
+                            <option value="ゲーム内のみ">ゲーム内のみ</option>
+                            <option value="聞き専">聞き専</option>
+                            <option value="なし">なし</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="input-bio">自己紹介</label>
+                    <textarea id="input-bio" rows="3">よろしくお願いします！楽しく遊びましょう！</textarea>
+                </div>
+            </div>
+
+            <div class="card-section">
+                <h2><i class="fa-solid fa-wand-magic-sparkles"></i> ビジュアル</h2>
+                <div class="input-group">
+                    <label>テーマカラー</label>
+                    <div class="color-picker">
+                        <button class="color-btn active" data-color="#9333ea" style="background-color: #9333ea;"></button>
+                        <button class="color-btn" data-color="#db2777" style="background-color: #db2777;"></button>
+                        <button class="color-btn" data-color="#06b6d4" style="background-color: #06b6d4;"></button>
+                        <button class="color-btn" data-color="#10b981" style="background-color: #10b981;"></button>
+                        <button class="color-btn" data-color="#f59e0b" style="background-color: #f59e0b;"></button>
+                        <button class="color-btn" data-color="#dc2626" style="background-color: #dc2626;"></button>
+                    </div>
+                </div>
+                <div class="image-upload-row">
+                    <div class="upload-group">
+                        <label>アバター</label>
+                        <label class="upload-box" for="upload-avatar">
+                            <i class="fa-solid fa-upload"></i>
+                            <span>アップロード</span>
+                            <input type="file" id="upload-avatar" accept="image/*" hidden>
+                        </label>
+                    </div>
+                    <div class="upload-group">
+                        <label>背景</label>
+                        <label class="upload-box" for="upload-bg">
+                            <i class="fa-solid fa-image"></i>
+                            <span>アップロード</span>
+                            <input type="file" id="upload-bg" accept="image/*" hidden>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="preview-panel">
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span><i class="fa-solid fa-circle"></i> LIVE PREVIEW</span>
+                    <small>1920 x 1080 Output</small>
+                </div>
+                <div class="preview-canvas-wrapper">
+                    <!-- The actual high-res canvas is hidden, we show its data in an img for responsiveness -->
+                    <img id="preview-image" alt="Preview Result">
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="btn-download" class="btn-primary">
+                    <i class="fa-solid fa-download"></i> カードをダウンロード
+                </button>
+                <button id="btn-copy" class="btn-secondary">
+                    <i class="fa-solid fa-copy"></i> 画像をコピー
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <p>&copy; 2026 Game Profile Card Generator</p>
+    </footer >
+
+    <canvas id="render-canvas" width="1920" height="1080" style="display: none;"></canvas>
+
+    <div id="toast" class="toast hidden">
+        <i class="fa-solid fa-check-circle"></i>
+        <span id="toast-message">メッセージ</span>
     </div>
-  </header>
 
-  <!-- メインコンテンツ -->
-  <main class="flex-1 max-w-7xl w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-12 gap-6">
-    
-    <!-- 左側：設定パネル (col-span-5) -->
-    <section class="lg:col-span-5 flex flex-col gap-5 overflow-y-auto max-h-[calc(100vh-120px)] pr-1">
-      
-      <!-- セクション：基本情報 -->
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
-        <h2 class="text-md font-bold mb-4 flex items-center gap-2 text-purple-400">
-          <i class="fa-solid fa-user-gear"></i> 基本情報
-        </h2>
-        
-        <div class="space-y-4">
-          <div>
-            <label class="block text-xs font-semibold text-slate-400 mb-1">プレイヤー名 (PLAYER NAME)</label>
-            <input type="text" id="input-name" value="Gamer_Alpha" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-purple-500 transition-colors">
-          </div>
-          
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block text-xs font-semibold text-slate-400 mb-1">メインゲーム</label>
-              <input type="text" id="input-game" value="Apex Legends" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-purple-500 transition-colors">
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-400 mb-1">プレイ歴</label>
-              <input type="text" id="input-history" value="約3年" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-purple-500 transition-colors">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block text-xs font-semibold text-slate-400 mb-1">メイン活動機種</label>
-              <select id="input-platform" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-purple-500 transition-colors">
-                <option value="PC (Steam / Origin)">PC</option>
-                <option value="PlayStation 5 / 4">PlayStation</option>
-                <option value="Nintendo Switch">Nintendo Switch</option>
-                <option value="Xbox Series X/S">Xbox</option>
-                <option value="Mobile (iOS / Android)">Mobile</option>
-                <option value="マルチプラットフォーム" selected>マルチ</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-400 mb-1">活動時間帯</label>
-              <input type="text" id="input-time" value="21:00 〜 24:00" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-purple-500 transition-colors">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block text-xs font-semibold text-slate-400 mb-1">プレイスタイル</label>
-              <select id="input-style" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-purple-500 transition-colors">
-                <option value="エンジョイ勢" selected>エンジョイ勢</option>
-                <option value="ガチ勢 / ランクメイン">ガチ勢</option>
-                <option value="のんびり / 雑談メイン">のんびり / 雑談</option>
-                <option value="VCありでワイワイ">VCありでワイワイ</option>
-                <option value="ソロ中心 / 聞き専">ソロ / 聞き専</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-400 mb-1">VC (ボイスチャット)</label>
-              <select id="input-vc" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-purple-500 transition-colors">
-                <option value="Discord可 / VC歓迎" selected>Discord可 (歓迎)</option>
-                <option value="ゲーム内VCのみ">ゲーム内VCのみ</option>
-                <option value="聞き専 (話せません)">聞き専</option>
-                <option value="VCなし">VCなし</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-400 mb-1">自己紹介・一言メッセージ</label>
-            <textarea id="input-bio" rows="3" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-purple-500 transition-colors resize-none">FPSやRPGを夜な夜なプレイしています！ランクもカジュアルもどちらも大好きです。VCを繋いで楽しくワイワイ遊びましょう！お気軽にフォローしてください！</textarea>
-          </div>
-        </div>
-      </div>
-
-      <!-- セクション：デザイン・画像選択 -->
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
-        <h2 class="text-md font-bold mb-4 flex items-center gap-2 text-pink-400">
-          <i class="fa-solid fa-wand-magic-sparkles"></i> ビジュアルカスタマイズ
-        </h2>
-
-        <!-- テーマカラー -->
-        <div class="mb-5">
-          <label class="block text-xs font-semibold text-slate-400 mb-2">テーマカラー</label>
-          <div class="flex flex-wrap gap-2">
-            <button class="color-btn w-8 h-8 rounded-full bg-purple-600 border-2 border-white" data-color="#9333ea" title="パープル"></button>
-            <button class="color-btn w-8 h-8 rounded-full bg-pink-600 border-2 border-transparent" data-color="#db2777" title="ピンク"></button>
-            <button class="color-btn w-8 h-8 rounded-full bg-cyan-500 border-2 border-transparent" data-color="#06b6d4" title="シアン"></button>
-            <button class="color-btn w-8 h-8 rounded-full bg-emerald-500 border-2 border-transparent" data-color="#10b981" title="エメラルド"></button>
-            <button class="color-btn w-8 h-8 rounded-full bg-amber-500 border-2 border-transparent" data-color="#f59e0b" title="ゴールド"></button>
-            <button class="color-btn w-8 h-8 rounded-full bg-red-600 border-2 border-transparent" data-color="#dc2626" title="レッド"></button>
-          </div>
-        </div>
-
-        <!-- アバター設定 -->
-        <div class="mb-5 border-t border-slate-800 pt-4">
-          <div class="flex justify-between items-center mb-2">
-            <label class="text-xs font-semibold text-slate-400">アバター画像</label>
-            <span class="text-[10px] text-slate-500">推奨: 正方形</span>
-          </div>
-          <div class="grid grid-cols-2 gap-2 mb-3">
-            <!-- ファイルアップロード -->
-            <label class="flex flex-col items-center justify-center border border-dashed border-slate-700 hover:border-purple-500 rounded-lg p-2 cursor-pointer transition-colors bg-slate-950/50">
-              <i class="fa-solid fa-upload text-sm text-slate-400 mb-1"></i>
-              <span class="text-xs text-slate-300">画像をアップロード</span>
-              <input type="file" id="upload-avatar" accept="image/*" class="hidden">
-            </label>
-            <!-- AI画像生成 -->
-            <button id="btn-generate-avatar" class="flex flex-col items-center justify-center border border-purple-500/30 hover:border-purple-500 rounded-lg p-2 bg-purple-950/20 hover:bg-purple-950/40 text-purple-300 transition-all">
-              <i class="fa-solid fa-robot text-sm mb-1 text-purple-400 animate-bounce"></i>
-              <span class="text-xs font-medium">AIでアバターを生成</span>
-            </button>
-          </div>
-          <!-- アバター生成用プロンプト入力 (デフォルト非表示、クリックでトグル) -->
-          <div id="avatar-ai-box" class="hidden bg-slate-950 p-3 rounded-lg border border-purple-500/20 mb-3 space-y-2">
-            <input type="text" id="avatar-prompt" placeholder="例: クールなゲーマー男子、ネオンヘッドホン、アニメ風" class="w-full bg-slate-900 border border-slate-700 rounded px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-purple-500">
-            <button id="btn-trigger-avatar-ai" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs py-1.5 rounded hover:opacity-90 transition-opacity flex justify-center items-center gap-1">
-              <i class="fa-solid fa-wand-magic-sparkles"></i> AI召喚
-            </button>
-          </div>
-          <!-- プリセット選択 -->
-          <div class="flex items-center gap-2 overflow-x-auto py-1">
-            <span class="text-[10px] text-slate-400 shrink-0">プリセット:</span>
-            <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=150&auto=format&fit=crop&q=60" class="avatar-preset w-8 h-8 rounded-full border border-slate-700 cursor-pointer object-cover hover:scale-115 transition-transform" data-url="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=300&auto=format&fit=crop&q=80">
-            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=60" class="avatar-preset w-8 h-8 rounded-full border border-slate-700 cursor-pointer object-cover hover:scale-115 transition-transform" data-url="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=300&auto=format&fit=crop&q=80">
-            <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150&auto=format&fit=crop&q=60" class="avatar-preset w-8 h-8 rounded-full border border-slate-700 cursor-pointer object-cover hover:scale-115 transition-transform" data-url="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=300&auto=format&fit=crop&q=80">
-            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=60" class="avatar-preset w-8 h-8 rounded-full border border-slate-700 cursor-pointer object-cover hover:scale-115 transition-transform" data-url="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&auto=format&fit=crop&q=80">
-          </div>
-        </div>
-
-        <!-- 背景画像設定 -->
-        <div class="border-t border-slate-800 pt-4">
-          <div class="flex justify-between items-center mb-2">
-            <label class="text-xs font-semibold text-slate-400">背景画像</label>
-            <span class="text-[10px] text-slate-500">推奨: 16:9 横長</span>
-          </div>
-          <div class="grid grid-cols-2 gap-2 mb-3">
-            <!-- ファイルアップロード -->
-            <label class="flex flex-col items-center justify-center border border-dashed border-slate-700 hover:border-purple-500 rounded-lg p-2 cursor-pointer transition-colors bg-slate-950/50">
-              <i class="fa-solid fa-image text-sm text-slate-400 mb-1"></i>
-              <span class="text-xs text-slate-300">画像をアップロード</span>
-              <input type="file" id="upload-bg" accept="image/*" class="hidden">
-            </label>
-            <!-- AI画像生成 -->
-            <button id="btn-generate-bg" class="flex flex-col items-center justify-center border border-indigo-500/30 hover:border-indigo-500 rounded-lg p-2 bg-indigo-950/20 hover:bg-indigo-950/40 text-indigo-300 transition-all">
-              <i class="fa-solid fa-wand-magic-sparkles text-sm mb-1 text-indigo-400 animate-bounce"></i>
-              <span class="text-xs font-medium">AIで背景を生成</span>
-            </button>
-          </div>
-          <!-- 背景生成用プロンプト入力 (デフォルト非表示) -->
-          <div id="bg-ai-box" class="hidden bg-slate-950 p-3 rounded-lg border border-indigo-500/20 mb-3 space-y-2">
-            <input type="text" id="bg-prompt" placeholder="例: サイバーパンクなネオン都市、夜景、未来のゲーム部屋、3D" class="w-full bg-slate-900 border border-slate-700 rounded px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500">
-            <button id="btn-trigger-bg-ai" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-xs py-1.5 rounded hover:opacity-90 transition-opacity flex justify-center items-center gap-1">
-              <i class="fa-solid fa-wand-magic-sparkles"></i> AI召喚
-            </button>
-          </div>
-          <!-- プリセット選択 -->
-          <div class="flex items-center gap-2 overflow-x-auto py-1">
-            <span class="text-[10px] text-slate-400 shrink-0">プリセット:</span>
-            <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=150&auto=format&fit=crop&q=60" class="bg-preset w-10 h-7 rounded border border-slate-700 cursor-pointer object-cover hover:scale-110 transition-transform" data-url="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&auto=format&fit=crop&q=80">
-            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=150&auto=format&fit=crop&q=60" class="bg-preset w-10 h-7 rounded border border-slate-700 cursor-pointer object-cover hover:scale-110 transition-transform" data-url="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=80">
-            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=150&auto=format&fit=crop&q=60" class="bg-preset w-10 h-7 rounded border border-slate-700 cursor-pointer object-cover hover:scale-110 transition-transform" data-url="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&auto=format&fit=crop&q=80">
-            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=150&auto=format&fit=crop&q=60" class="bg-preset w-10 h-7 rounded border border-slate-700 cursor-pointer object-cover hover:scale-110 transition-transform" data-url="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&auto=format&fit=crop&q=80">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 右側：リアルタイムプレビュー & 出力コントロール (col-span-7) -->
-    <section class="lg:col-span-7 flex flex-col items-center justify-start gap-6">
-      
-      <!-- ステータス・メッセージエリア -->
-      <div id="loading-spinner" class="hidden w-full max-w-2xl bg-indigo-950/40 border border-indigo-500/30 text-indigo-200 px-4 py-3 rounded-xl flex items-center gap-3">
-        <svg class="animate-spin h-5 w-5 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        <span class="text-sm font-semibold" id="loading-text">画像を生成しています。これには数十秒かかる場合があります...</span>
-      </div>
-
-      <!-- メインプレビュー (表示専用。描画元となる実Canvasはメモリ上に隠し、レスポンシブなimgとして表示することでズレ・崩れを防止) -->
-      <div class="w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-2xl flex flex-col items-center">
-        <div class="flex justify-between items-center w-full mb-3">
-          <span class="text-xs font-bold tracking-wider text-slate-400 flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-green-500"></span> LIVE PREVIEW
-          </span>
-          <span class="text-[11px] text-slate-500">超高画質 1920×1080 出力対応（ズレ防止スケーリング機能搭載）</span>
-        </div>
-        
-        <!-- カードをコンテナ幅いっぱいにレスポンシブ表示 -->
-        <div class="w-full aspect-[16/9] bg-slate-950 rounded-xl overflow-hidden shadow-lg border border-slate-800/80 relative">
-          <!-- 画像タグを使って表示 (ズレ防止の対応: Canvasを定期的にデータURL化してココに差し込む) -->
-          <img id="card-preview-img" src="" alt="Card Preview" class="w-full h-full object-contain">
-        </div>
-      </div>
-
-      <!-- ダウンロード & 共有アクション -->
-      <div class="w-full max-w-2xl flex flex-col sm:flex-row gap-3">
-        <button id="btn-download" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg hover:shadow-purple-500/20 active:scale-98 transition-all flex justify-center items-center gap-2">
-          <i class="fa-solid fa-download text-lg"></i>
-          <span>カード画像をダウンロード (PNG)</span>
-        </button>
-        <button id="btn-copy" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-3.5 px-6 rounded-xl transition-all active:scale-98 flex justify-center items-center gap-2">
-          <i class="fa-solid fa-copy text-lg"></i>
-          <span>クリップボードにコピー</span>
-        </button>
-      </div>
-
-      <!-- 成功/エラー通知モーダル（ブラウザのalertを回避） -->
-      <div id="toast-message" class="hidden fixed bottom-6 right-6 bg-slate-900 border border-emerald-500/30 text-emerald-300 px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 max-w-sm transition-all duration-300 transform translate-y-10 opacity-0 z-50">
-        <i class="fa-solid fa-circle-check text-xl text-emerald-400"></i>
-        <div>
-          <h4 class="text-sm font-bold text-slate-200">成功しました</h4>
-          <p class="text-xs text-slate-400" id="toast-text">メッセージがここに表示されます</p>
-        </div>
-      </div>
-
-    </section>
-
-  </main>
-
-  <!-- フッター -->
-  <footer class="border-t border-slate-900 bg-slate-950 py-6 text-center text-xs text-slate-500 mt-10">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-3">
-      <p>© 2026 Game Profile Card Generator. All rights reserved.</p>
-      <div class="flex gap-4">
-        <a href="#" class="hover:text-slate-300 transition-colors">利用規約</a>
-        <a href="#" class="hover:text-slate-300 transition-colors">プライバシーポリシー</a>
-        <a href="#" class="hover:text-slate-300 transition-colors">GitHub Pages Demo</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- 描画用の実体非表示Canvas (メモリ上で完璧にフルHDレンダリング) -->
-  <canvas id="render-canvas" width="1920" height="1080" class="hidden"></canvas>
-
-  <!-- ==========================================
-       JAVASCRIPT / LOGIC
-       ========================================== -->
-  <script>
-    // --- グローバル構成 ---
-    const apiKey = ""; // Gemini APIキー (実行環境から自動提供されるため、空文字で初期化)
-    
-    // --- 状態管理 ---
-    const state = {
-      name: "Gamer_Alpha",
-      game: "Apex Legends",
-      history: "約3年",
-      platform: "PC (Steam / Origin)",
-      time: "21:00 〜 24:00",
-      style: "エンジョイ勢",
-      vc: "Discord可 / VC歓迎",
-      bio: "FPSやRPGを夜な夜なプレイしています！ランクもカジュアルもどちらも大好きです。VCを繋いで楽しくワイワイ遊びましょう！お気軽にフォローしてください！",
-      themeColor: "#9333ea", // デフォルト紫
-      avatarUrl: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=300&auto=format&fit=crop&q=80",
-      bgUrl: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&auto=format&fit=crop&q=80"
-    };
-
-    // キャッシュ済みのImageオブジェクト（再読み込みによる描画遅延を防ぐため）
-    const imageCache = {
-      avatarImg: null,
-      bgImg: null
-    };
-
-    // --- DOM要素 ---
-    const elements = {
-      inputName: document.getElementById('input-name'),
-      inputGame: document.getElementById('input-game'),
-      inputHistory: document.getElementById('input-history'),
-      inputPlatform: document.getElementById('input-platform'),
-      inputTime: document.getElementById('input-time'),
-      inputStyle: document.getElementById('input-style'),
-      inputVc: document.getElementById('input-vc'),
-      inputBio: document.getElementById('input-bio'),
-      canvas: document.getElementById('render-canvas'),
-      previewImg: document.getElementById('card-preview-img'),
-      btnDownload: document.getElementById('btn-download'),
-      btnCopy: document.getElementById('btn-copy'),
-      toast: document.getElementById('toast-message'),
-      toastText: document.getElementById('toast-text'),
-      uploadAvatar: document.getElementById('upload-avatar'),
-      uploadBg: document.getElementById('upload-bg'),
-      btnGenerateAvatar: document.getElementById('btn-generate-avatar'),
-      btnGenerateBg: document.getElementById('btn-generate-bg'),
-      avatarAiBox: document.getElementById('avatar-ai-box'),
-      bgAiBox: document.getElementById('bg-ai-box'),
-      avatarPrompt: document.getElementById('avatar-prompt'),
-      bgPrompt: document.getElementById('bg-prompt'),
-      btnTriggerAvatarAi: document.getElementById('btn-trigger-avatar-ai'),
-      btnTriggerBgAi: document.getElementById('btn-trigger-bg-ai'),
-      loadingSpinner: document.getElementById('loading-spinner'),
-      loadingText: document.getElementById('loading-text')
-    };
-
-    // --- 初期セットアップ ---
-    window.addEventListener('DOMContentLoaded', () => {
-      // 1. 各種入力フィールドの値変更イベントの紐付け
-      const bindInput = (element, key) => {
-        element.addEventListener('input', (e) => {
-          state[key] = e.target.value;
-          updateCard();
-        });
-        element.addEventListener('change', (e) => {
-          state[key] = e.target.value;
-          updateCard();
-        });
-      };
-
-      bindInput(elements.inputName, 'name');
-      bindInput(elements.inputGame, 'game');
-      bindInput(elements.inputHistory, 'history');
-      bindInput(elements.inputPlatform, 'platform');
-      bindInput(elements.inputTime, 'time');
-      bindInput(elements.inputStyle, 'style');
-      bindInput(elements.inputVc, 'vc');
-      bindInput(elements.inputBio, 'bio');
-
-      // テーマカラー選択イベント
-      document.querySelectorAll('.color-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          // ボーダー外す
-          document.querySelectorAll('.color-btn').forEach(b => b.classList.replace('border-white', 'border-transparent'));
-          btn.classList.replace('border-transparent', 'border-white');
-          state.themeColor = btn.dataset.color;
-          updateCard();
-        });
-      });
-
-      // アバタープリセット選択
-      document.querySelectorAll('.avatar-preset').forEach(img => {
-        img.addEventListener('click', () => {
-          state.avatarUrl = img.dataset.url;
-          imageCache.avatarImg = null; // キャッシュクリア
-          updateCard();
-        });
-      });
-
-      // 背景プリセット選択
-      document.querySelectorAll('.bg-preset').forEach(img => {
-        img.addEventListener('click', () => {
-          state.bgUrl = img.dataset.url;
-          imageCache.bgImg = null; // キャッシュクリア
-          updateCard();
-        });
-      });
-
-      // 画像アップロード処理
-      elements.uploadAvatar.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            state.avatarUrl = event.target.result;
-            imageCache.avatarImg = null;
-            updateCard();
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-
-      elements.uploadBg.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            state.bgUrl = event.target.result;
-            imageCache.bgImg = null;
-            updateCard();
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-
-      // AI画像生成トグル
-      elements.btnGenerateAvatar.addEventListener('click', () => {
-        elements.avatarAiBox.classList.toggle('hidden');
-      });
-
-      elements.btnGenerateBg.addEventListener('click', () => {
-        elements.bgAiBox.classList.toggle('hidden');
-      });
-
-      // AI生成トリガー
-      elements.btnTriggerAvatarAi.addEventListener('click', () => triggerImageGeneration('avatar'));
-      elements.btnTriggerBgAi.addEventListener('click', () => triggerImageGeneration('bg'));
-
-      // ダウンロード処理
-      elements.btnDownload.addEventListener('click', downloadCard);
-
-      // コピー処理
-      elements.btnCopy.addEventListener('click', copyCardToClipboard);
-
-      // 初期描画
-      updateCard();
-    });
-
-    // --- トースト通知の表示 ---
-    function showToast(message) {
-      elements.toastText.textContent = message;
-      elements.toast.classList.remove('hidden');
-      // アニメーション用
-      setTimeout(() => {
-        elements.toast.classList.remove('translate-y-10', 'opacity-0');
-        elements.toast.classList.add('translate-y-0', 'opacity-100');
-      }, 50);
-
-      // 3秒後に消去
-      setTimeout(() => {
-        elements.toast.classList.add('translate-y-10', 'opacity-0');
-        elements.toast.classList.remove('translate-y-0', 'opacity-100');
-        setTimeout(() => {
-          elements.toast.classList.add('hidden');
-        }, 300);
-      }, 3000);
-    }
-
-    // --- 指数バックオフ付きAPI通信 (リトライ5回) ---
-    async function fetchWithRetry(url, options, retries = 5, delay = 1000) {
-      try {
-        const response = await fetch(url, options);
-        if (!response.ok) {
-          throw new Error(`HTTP Error Status: ${response.status}`);
-        }
-        return await response.json();
-      } catch (error) {
-        if (retries > 0) {
-          await new Promise(resolve => setTimeout(resolve, delay));
-          return fetchWithRetry(url, options, retries - 1, delay * 2);
-        }
-        throw error;
-      }
-    }
-
-    // --- AI画像生成 (Gemini Imagen 4.0 API) ---
-    async function generateImageWithAI(promptText) {
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`;
-      const payload = {
-        instances: [{ prompt: promptText }],
-        parameters: { sampleCount: 1 }
-      };
-
-      const result = await fetchWithRetry(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      if (result && result.predictions && result.predictions[0] && result.predictions[0].bytesBase64Encoded) {
-        return `data:image/png;base64,${result.predictions[0].bytesBase64Encoded}`;
-      } else {
-        throw new Error("APIレスポンスから画像データを取得できませんでした。");
-      }
-    }
-
-    // AI生成実行メイン
-    async function triggerImageGeneration(type) {
-      const promptInput = type === 'avatar' ? elements.avatarPrompt : elements.bgPrompt;
-      const prompt = promptInput.value.trim();
-
-      if (!prompt) {
-        showToast("プロンプト（画像の特徴）を入力してください！");
-        return;
-      }
-
-      // ローディング表示
-      elements.loadingSpinner.classList.remove('hidden');
-      elements.loadingText.textContent = `AIで${type === 'avatar' ? 'アバター' : '背景'}画像を生成中... (数十秒かかる場合があります)`;
-      
-      const triggerBtn = type === 'avatar' ? elements.btnTriggerAvatarAi : elements.btnTriggerBgAi;
-      triggerBtn.disabled = true;
-      triggerBtn.classList.add('opacity-50');
-
-      try {
-        const base64Img = await generateImageWithAI(prompt);
-        if (type === 'avatar') {
-          state.avatarUrl = base64Img;
-          imageCache.avatarImg = null; // キャッシュリセット
-          elements.avatarAiBox.classList.add('hidden');
-        } else {
-          state.bgUrl = base64Img;
-          imageCache.bgImg = null; // キャッシュリセット
-          elements.bgAiBox.classList.add('hidden');
-        }
-        updateCard();
-        showToast(`${type === 'avatar' ? 'アバター' : '背景'}画像の生成に成功しました！`);
-      } catch (error) {
-        console.error("AI Generation Error:", error);
-        showToast("画像の生成に失敗しました。時間をおいて再試行してください。");
-      } finally {
-        elements.loadingSpinner.classList.add('hidden');
-        triggerBtn.disabled = false;
-        triggerBtn.classList.remove('opacity-50');
-      }
-    }
-
-    // --- HTML5 Canvasによる高精細レンダリング ---
-    function updateCard() {
-      const ctx = elements.canvas.getContext('2d');
-      const width = elements.canvas.width;  // 1920
-      const height = elements.canvas.height; // 1080
-
-      // 画像の非同期ロード管理
-      let imagesLoaded = 0;
-      const totalImages = 2;
-
-      const onImageLoaded = () => {
-        imagesLoaded++;
-        if (imagesLoaded === totalImages) {
-          drawCardContent(ctx, width, height);
-        }
-      };
-
-      // 背景画像のロードとキャッシュ
-      if (!imageCache.bgImg || imageCache.bgImg.src !== state.bgUrl) {
-        imageCache.bgImg = new Image();
-        // CORS対応
-        if (!state.bgUrl.startsWith('data:')) {
-          imageCache.bgImg.crossOrigin = 'anonymous';
-        }
-        imageCache.bgImg.onload = onImageLoaded;
-        imageCache.bgImg.onerror = () => {
-          // 仮想解像度1200x675基準のダミー背景
-          imageCache.bgImg = createFallbackGradientBg(1200, 675);
-          onImageLoaded();
-        };
-        imageCache.bgImg.src = state.bgUrl;
-      } else {
-        onImageLoaded();
-      }
-
-      // アバター画像のロードとキャッシュ
-      if (!imageCache.avatarImg || imageCache.avatarImg.src !== state.avatarUrl) {
-        imageCache.avatarImg = new Image();
-        // CORS対応
-        if (!state.avatarUrl.startsWith('data:')) {
-          imageCache.avatarImg.crossOrigin = 'anonymous';
-        }
-        imageCache.avatarImg.onload = onImageLoaded;
-        imageCache.avatarImg.onerror = () => {
-          // フォールバック用のダミーパープル丸アバター
-          imageCache.avatarImg = createFallbackAvatar(250, 250);
-          onImageLoaded();
-        };
-        imageCache.avatarImg.src = state.avatarUrl;
-      } else {
-        onImageLoaded();
-      }
-    }
-
-    // ダミー背景生成
-    function createFallbackGradientBg(w, h) {
-      const tempCanvas = document.createElement('canvas');
-      tempCanvas.width = w;
-      tempCanvas.height = h;
-      const tCtx = tempCanvas.getContext('2d');
-      const grad = tCtx.createLinearGradient(0, 0, w, h);
-      grad.addColorStop(0, '#1e1b4b');
-      grad.addColorStop(0.5, '#311042');
-      grad.addColorStop(1, '#0f172a');
-      tCtx.fillStyle = grad;
-      tCtx.fillRect(0, 0, w, h);
-      const img = new Image();
-      img.src = tempCanvas.toDataURL();
-      return img;
-    }
-
-    // ダミーアバター生成
-    function createFallbackAvatar(w, h) {
-      const tempCanvas = document.createElement('canvas');
-      tempCanvas.width = w;
-      tempCanvas.height = h;
-      const tCtx = tempCanvas.getContext('2d');
-      tCtx.fillStyle = '#6b21a8';
-      tCtx.beginPath();
-      tCtx.arc(w/2, h/2, w/2, 0, Math.PI * 2);
-      tCtx.fill();
-      const img = new Image();
-      img.src = tempCanvas.toDataURL();
-      return img;
-    }
-
-    // Canvasへの実際の描画処理（1920x1080に1.6倍スケーリングして文字ズレを防ぐ）
-    function drawCardContent(ctx, width, height) {
-      // 1. 座標リセット & クリア
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.clearRect(0, 0, width, height);
-
-      // 2. 1200x675ベースの黄金比設計を、1920x1080(1.6倍)にスケーリングして描画
-      const scaleX = width / 1200;
-      const scaleY = height / 675;
-      ctx.scale(scaleX, scaleY);
-
-      // ※ これ以降は、1200 x 675 の座標系で開発するだけで、自動的に高精細1920x1080にズレなく補正されます。
-
-      // 背景描画 (1200x675仮想空間基準)
-      if (imageCache.bgImg && imageCache.bgImg.complete) {
-        const scale = Math.max(1200 / imageCache.bgImg.width, 675 / imageCache.bgImg.height);
-        const x = (1200 - imageCache.bgImg.width * scale) / 2;
-        const y = (675 - imageCache.bgImg.height * scale) / 2;
-        ctx.drawImage(imageCache.bgImg, x, y, imageCache.bgImg.width * scale, imageCache.bgImg.height * scale);
-      }
-
-      // サイバーオーバーレイ
-      const overlayGrad = ctx.createLinearGradient(0, 0, 1200, 0);
-      overlayGrad.addColorStop(0, 'rgba(15, 23, 42, 0.95)');
-      overlayGrad.addColorStop(0.5, 'rgba(15, 23, 42, 0.85)');
-      overlayGrad.addColorStop(1, 'rgba(15, 23, 42, 0.6)');
-      ctx.fillStyle = overlayGrad;
-      ctx.fillRect(0, 0, 1200, 675);
-
-      // テーマカラーのネオン外枠
-      ctx.strokeStyle = state.themeColor;
-      ctx.lineWidth = 14;
-      ctx.strokeRect(0, 0, 1200, 675);
-
-      // レイアウト設計値
-      const avatarX = 160;
-      const avatarY = 675 / 2 - 20;
-      const avatarRadius = 110;
-
-      const contentStartX = 340;
-      const titleY = 110;
-      const statsStartY = 160;
-      const statsColWidth = 400;
-      const statsRowHeight = 75;
-
-      // アバター画像枠
-      ctx.save();
-      ctx.shadowColor = state.themeColor;
-      ctx.shadowBlur = 25;
-      ctx.strokeStyle = state.themeColor;
-      ctx.lineWidth = 6;
-      ctx.beginPath();
-      ctx.arc(avatarX, avatarY, avatarRadius + 3, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.restore();
-
-      // アバター画像本体
-      ctx.save();
-      ctx.beginPath();
-      ctx.arc(avatarX, avatarY, avatarRadius, 0, Math.PI * 2);
-      ctx.clip();
-      if (imageCache.avatarImg && imageCache.avatarImg.complete) {
-        const scale = Math.max((avatarRadius*2) / imageCache.avatarImg.width, (avatarRadius*2) / imageCache.avatarImg.height);
-        ctx.drawImage(
-          imageCache.avatarImg, 
-          avatarX - (imageCache.avatarImg.width * scale) / 2, 
-          avatarY - (imageCache.avatarImg.height * scale) / 2, 
-          imageCache.avatarImg.width * scale, 
-          imageCache.avatarImg.height * scale
-        );
-      }
-      ctx.restore();
-
-      // アバター下「PLAYER」バッジ
-      ctx.fillStyle = state.themeColor;
-      const badgeW = 120;
-      const badgeH = 26;
-      const badgeX = avatarX - badgeW / 2;
-      const badgeY = avatarY + avatarRadius + 15;
-      drawRoundedRect(ctx, badgeX, badgeY, badgeW, badgeH, 6, true, false);
-
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 12px "Orbitron", sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('ACTIVE GAMER', avatarX, badgeY + badgeH / 2 + 1);
-
-      // プレイヤーネーム
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'top';
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '900 48px "Noto Sans JP", sans-serif';
-      const nameText = state.name || "NO NAME";
-      ctx.fillText(nameText, contentStartX, titleY);
-
-      // ネオンアンダーライン
-      const nameWidth = ctx.measureText(nameText).width;
-      ctx.fillStyle = state.themeColor;
-      ctx.fillRect(contentStartX, titleY + 62, Math.max(nameWidth + 20, 150), 4);
-
-      // プロフィール情報グリッド (1200x675想定の比率)
-      const items = [
-        { label: "MAIN GAME", value: state.game || "未設定", icon: "🎮" },
-        { label: "PLAY HISTORY", value: state.history || "未設定", icon: "⏳" },
-        { label: "HARDWARE / PLATFORM", value: state.platform || "未設定", icon: "💻" },
-        { label: "PLAY TIME", value: state.time || "未設定", icon: "⏰" },
-        { label: "PLAY STYLE", value: state.style || "未設定", icon: "⚔️" },
-        { label: "COMMUNICATION / VC", value: state.vc || "未設定", icon: "🎤" }
-      ];
-
-      items.forEach((item, index) => {
-        const col = index % 2;
-        const row = Math.floor(index / 2);
-        const x = contentStartX + col * statsColWidth;
-        const y = statsStartY + 45 + row * statsRowHeight;
-
-        // アイコン
-        ctx.fillStyle = state.themeColor;
-        ctx.font = '20px "Noto Sans JP"';
-        ctx.fillText(item.icon, x, y + 4);
-
-        // ラベル
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
-        ctx.font = '700 11px "Orbitron", "Noto Sans JP", sans-serif';
-        ctx.fillText(item.label, x + 30, y);
-
-        // 値
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '700 17px "Noto Sans JP", sans-serif';
-        const valText = item.value;
-        const maxValWidth = statsColWidth - 40;
-        let truncatedVal = valText;
-        if (ctx.measureText(valText).width > maxValWidth) {
-          while (ctx.measureText(truncatedVal + "...").width > maxValWidth && truncatedVal.length > 0) {
-            truncatedVal = truncatedVal.slice(0, -1);
-          }
-          truncatedVal += "...";
-        }
-        ctx.fillText(truncatedVal, x + 30, y + 20);
-      });
-
-      // 自己紹介テキストボックス
-      const bioStartY = 675 - 210;
-      const bioWidth = 790;
-      const bioHeight = 135;
-
-      // メッセージボックス
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.6)';
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-      ctx.lineWidth = 1;
-      drawRoundedRect(ctx, contentStartX, bioStartY, bioWidth, bioHeight, 12, true, true);
-
-      // ネオンアクセントバー
-      ctx.fillStyle = state.themeColor;
-      ctx.fillRect(contentStartX, bioStartY, 5, bioHeight);
-
-      // 「ABOUT ME」ヘッダー
-      ctx.fillStyle = state.themeColor;
-      ctx.font = '900 12px "Orbitron", sans-serif';
-      ctx.fillText("ABOUT ME / MESSAGE", contentStartX + 20, bioStartY + 15);
-
-      // 本文
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-      ctx.font = '500 15px "Noto Sans JP", sans-serif';
-      const bioText = state.bio || "よろしくお願いします！";
-      wrapText(ctx, bioText, contentStartX + 20, bioStartY + 45, 22, bioWidth - 40);
-
-      // 3. レンダリング完了後に、高解像度のままプレビュー表示用img要素へ転送
-      elements.previewImg.src = elements.canvas.toDataURL('image/png');
-    }
-
-    // 角丸長方形の描画ユーティリティ
-    function drawRoundedRect(ctx, x, y, width, height, radius, fill, stroke) {
-      ctx.beginPath();
-      ctx.moveTo(x + radius, y);
-      ctx.lineTo(x + width - radius, y);
-      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-      ctx.lineTo(x + width, y + height - radius);
-      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-      ctx.lineTo(x + radius, y + height);
-      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-      ctx.lineTo(x, y + radius);
-      ctx.quadraticCurveTo(x, y, x + radius, y);
-      ctx.closePath();
-      if (fill) ctx.fill();
-      if (stroke) ctx.stroke();
-    }
-
-    // テキスト自動折り返し処理
-    function wrapText(ctx, text, x, y, lineHeight, maxWidth) {
-      const words = text.split('');
-      let line = '';
-      let currentY = y;
-
-      for (let n = 0; n < words.length; n++) {
-        if (words[n] === '\n') {
-          ctx.fillText(line, x, currentY);
-          line = '';
-          currentY += lineHeight;
-          continue;
-        }
-
-        let testLine = line + words[n];
-        let metrics = ctx.measureText(testLine);
-        let testWidth = metrics.width;
-        if (testWidth > maxWidth && n > 0) {
-          ctx.fillText(line, x, currentY);
-          line = words[n];
-          currentY += lineHeight;
-        } else {
-          line = testLine;
-        }
-      }
-      ctx.fillText(line, x, currentY);
-    }
-
-    // --- カード画像のダウンロード ---
-    function downloadCard() {
-      const dataUrl = elements.canvas.toDataURL('image/png');
-      const link = document.createElement('a');
-      link.download = `game_card_${state.name}.png`;
-      link.href = dataUrl;
-      link.click();
-      showToast("高画質フルHDカードをダウンロードしました！");
-    }
-
-    // --- クリップボードにコピー ---
-    async function copyCardToClipboard() {
-      try {
-        elements.canvas.toBlob(async (blob) => {
-          if (!blob) {
-            showToast("画像の生成に失敗しました。");
-            return;
-          }
-          try {
-            await navigator.clipboard.write([
-              new ClipboardItem({
-                [blob.type]: blob
-              })
-            ]);
-            showToast("高画質画像をクリップボードにコピーしました！");
-          } catch (err) {
-            document.execCommand('copy'); 
-            showToast("コピーを試みました。非対応ブラウザの場合はダウンロードをご利用ください。");
-          }
-        }, 'image/png');
-      } catch (err) {
-        showToast("コピー機能はお使いのブラウザで制限されています。右クリック保存かダウンロードをご利用ください。");
-      }
-    }
-  </script>
+    <script src="app.js"></script>
 </body>
 </html>
