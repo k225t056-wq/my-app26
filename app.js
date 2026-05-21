@@ -217,37 +217,33 @@ function render() {
     }
     ctx.restore();
 
-    // 5. Text Content
+    // 5. Text Content (GRID SYSTEM)
     const contentX = 580;
-    const startY = 180;
-
-    // Reset baseline for consistent rendering
-    ctx.textBaseline = 'alphabetic';
-
-    // Player Name
+    
+    // ZONE 1: Player Name & Social IDs (150px - 280px)
+    const zone1Y = 150;
+    ctx.textBaseline = 'top';
     ctx.fillStyle = '#ffffff';
     ctx.font = '900 80px "Noto Sans JP"';
-    ctx.fillText(state.name, contentX, startY);
+    ctx.fillText(state.name, contentX, zone1Y);
 
-    // Social IDs (Twitter & Discord)
-    ctx.font = '700 30px "Noto Sans JP"'; // Slightly larger for visibility
+    ctx.font = '700 24px "Noto Sans JP"';
     ctx.fillStyle = '#cbd5e1';
-    let socialY = startY + 60;
     let socialX = contentX;
-    
     if (state.twitter) {
-        ctx.fillText(`Twitter: ${state.twitter}`, socialX, socialY);
-        socialX += ctx.measureText(`Twitter: ${state.twitter}`).width + 60;
+        ctx.fillText(`Twitter: ${state.twitter}`, socialX, zone1Y + 95);
+        socialX += ctx.measureText(`Twitter: ${state.twitter}`).width + 40;
     }
     if (state.discord) {
-        ctx.fillText(`Discord: ${state.discord}`, socialX, socialY);
+        ctx.fillText(`Discord: ${state.discord}`, socialX, zone1Y + 95);
     }
 
-    // Accent line under social info
+    // Divider
     ctx.fillStyle = state.themeColor;
-    ctx.fillRect(contentX, socialY + 25, 600, 6);
+    ctx.fillRect(contentX, zone1Y + 130, 1100, 2);
 
-    // Info Grid
+    // ZONE 2: Info Grid (320px - 620px)
+    const zone2Y = 320;
     const items = [
         { label: "MAIN GAME", value: state.game },
         { label: "PLAY HISTORY", value: state.history },
@@ -257,60 +253,55 @@ function render() {
         { label: "VC可否 / 方法", value: `${state.vc} / ${state.vcMethod}` }
     ];
 
-    ctx.font = '700 24px "Orbitron"';
-    ctx.fillStyle = state.themeColor;
-    
     items.forEach((item, i) => {
         const col = i % 2;
         const row = Math.floor(i / 2);
         const x = contentX + col * 550;
-        const y = startY + 180 + row * 110; 
+        const y = zone2Y + row * 100;
 
-        // Label
-        ctx.font = '700 22px "Orbitron"';
+        ctx.font = '700 20px "Orbitron"';
         ctx.fillStyle = state.themeColor;
         ctx.fillText(item.label, x, y);
 
-        // Value
-        ctx.font = '700 36px "Noto Sans JP"';
+        ctx.font = '700 32px "Noto Sans JP"';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(item.value, x, y + 50);
+        ctx.fillText(item.value, x, y + 35);
     });
 
-    // Friend Code Section
+    // ZONE 3: Friend Code (650px - 750px)
+    const zone3Y = 650;
     if (state.friendCode) {
-        const fcY = 720; // Slightly up from 760
-        ctx.font = '700 24px "Orbitron"';
+        ctx.font = '700 20px "Orbitron"';
         ctx.fillStyle = state.themeColor;
-        ctx.fillText("FRIEND CODE / PLATFORM ID", contentX, fcY);
+        ctx.fillText("FRIEND CODE / PLATFORM ID", contentX, zone3Y);
         
         ctx.font = '700 36px "Noto Sans JP"';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(state.friendCode, contentX, fcY + 45);
+        ctx.fillText(state.friendCode, contentX, zone3Y + 35);
     }
 
-    // Bio Section
-    const bioY = 820; // Slightly up from 860
+    // ZONE 4: Bio Section (780px - 1000px)
+    const zone4Y = 780;
     const bioW = 1100;
-    const bioH = 180; // Slightly taller again
+    const bioH = 200;
 
     // Bio Box
     ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
-    ctx.roundRect(contentX, bioY, bioW, bioH, 20);
+    ctx.roundRect(contentX, zone4Y, bioW, bioH, 20);
     ctx.fill();
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
     ctx.lineWidth = 2;
     ctx.stroke();
 
     // Bio Title
-    ctx.font = '700 22px "Orbitron"';
+    ctx.font = '700 20px "Orbitron"';
     ctx.fillStyle = state.themeColor;
-    ctx.fillText("ABOUT ME", contentX + 30, bioY + 50);
+    ctx.fillText("ABOUT ME", contentX + 30, zone4Y + 20);
 
     // Bio Text
-    ctx.font = '500 30px "Noto Sans JP"';
+    ctx.font = '500 28px "Noto Sans JP"';
     ctx.fillStyle = '#e2e8f0';
-    wrapText(ctx, state.bio, contentX + 30, bioY + 100, 45, bioW - 60);
+    wrapText(ctx, state.bio, contentX + 30, zone4Y + 65, 42, bioW - 60);
 
     // 6. Update Preview
     elements.previewImage.src = elements.canvas.toDataURL('image/png');
