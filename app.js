@@ -10,7 +10,8 @@ const state = {
     platform: "PC",
     time: "21:00 〜 24:00",
     style: "エンジョイ勢",
-    vc: "Discord可",
+    vc: "可",
+    vcMethod: "Discord",
     bio: "よろしくお願いします！FPSやRPGを夜な夜なプレイしています。楽しくワイワイ遊びましょう！お気軽にフォローしてください！",
     themeColor: "#9333ea",
     avatarUrl: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&h=400&fit=crop",
@@ -32,6 +33,7 @@ const elements = {
         time: document.getElementById('input-time'),
         style: document.getElementById('input-style'),
         vc: document.getElementById('input-vc'),
+        vcMethod: document.getElementById('input-vc-method'),
         bio: document.getElementById('input-bio')
     },
     uploadAvatar: document.getElementById('upload-avatar'),
@@ -211,7 +213,7 @@ function render() {
         { label: "PLATFORM", value: state.platform },
         { label: "PLAY TIME", value: state.time },
         { label: "STYLE", value: state.style },
-        { label: "VC", value: state.vc }
+        { label: "VC可否 / 方法", value: `${state.vc} / ${state.vcMethod}` }
     ];
 
     ctx.font = '700 24px "Orbitron"';
