@@ -199,7 +199,10 @@ function render() {
 
     // 5. Text Content
     const contentX = 580;
-    const startY = 180; // Shift up slightly to fit social IDs
+    const startY = 180;
+
+    // Reset baseline for consistent rendering
+    ctx.textBaseline = 'alphabetic';
 
     // Player Name
     ctx.fillStyle = '#ffffff';
@@ -207,20 +210,22 @@ function render() {
     ctx.fillText(state.name, contentX, startY);
 
     // Social IDs (Twitter & Discord)
-    ctx.font = '700 24px "Noto Sans JP"';
+    ctx.font = '700 30px "Noto Sans JP"'; // Slightly larger for visibility
     ctx.fillStyle = '#cbd5e1';
+    let socialY = startY + 60;
     let socialX = contentX;
+    
     if (state.twitter) {
-        ctx.fillText(`Twitter: ${state.twitter}`, socialX, startY + 60);
-        socialX += ctx.measureText(`Twitter: ${state.twitter}`).width + 40;
+        ctx.fillText(`Twitter: ${state.twitter}`, socialX, socialY);
+        socialX += ctx.measureText(`Twitter: ${state.twitter}`).width + 60;
     }
     if (state.discord) {
-        ctx.fillText(`Discord: ${state.discord}`, socialX, startY + 60);
+        ctx.fillText(`Discord: ${state.discord}`, socialX, socialY);
     }
 
-    // Accent line under name/social
+    // Accent line under social info
     ctx.fillStyle = state.themeColor;
-    ctx.fillRect(contentX, startY + 80, 400, 8);
+    ctx.fillRect(contentX, socialY + 25, 600, 6);
 
     // Info Grid
     const items = [
@@ -239,7 +244,7 @@ function render() {
         const col = i % 2;
         const row = Math.floor(i / 2);
         const x = contentX + col * 550;
-        const y = startY + 160 + row * 110; // Adjust spacing for higher startY
+        const y = startY + 180 + row * 110; 
 
         // Label
         ctx.font = '700 22px "Orbitron"';
